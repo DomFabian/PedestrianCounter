@@ -1,3 +1,4 @@
+<?php 
 /*****************************************
 ** File:    CommonMethods.php
 ** Project: CSCE 315 Project 1, Spring 2018
@@ -8,13 +9,8 @@
 **
 **   This file contains functions used by any and all PHP files
 ** that need to connect to the phpMyAdmin database for the 315 project 1.
-** 
-** 
-**
 **
 ***********************************************/
-
-<?php 
 
 class Common
 {	
@@ -33,28 +29,25 @@ class Common
 		return $rs;
 	}
 
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-	
-	function connect($db)// connect to MySQL DB Server
-	{
-		try
-		{
+	// connect to MySQL DB Server
+	function connect($db) {
+		try {
 			$this->conn = new PDO('mysql:host='.$this->db.';dbname='.$this->dbname, $this->user, $this->pass);
-	    	} catch (PDOException $e) {
-        	    print "Error!: " . $e->getMessage() . "<br/>";
+        }
+        catch (PDOException $e) {
+        	    print "Error!: $e->getMessage() <br/>";
 	            die();
         	}
 	}
 
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-
-	function executeQuery($sql, $filename) // execute query
-	{
-		if($this->debug == true) { echo("$sql <br>\n"); }
-		$rs = $this->conn->query($sql) or die("Could not execute query '$sql' in $filename"); 
+    // execute query
+	function executeQuery($sql, $filename) {
+		if ($this->debug) {
+            echo("$sql <br/>\n");
+        }
+        $rs = $this->conn->query($sql);
 		return $rs;
 	}			
 
-} // ends class, NEEDED!!
-
+}
 ?>
