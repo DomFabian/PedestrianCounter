@@ -1,7 +1,7 @@
 # PedestrianCounter
 
 ## Using the Web Resources
-The PedestrianCounter system currently uses a MySQL database backend with server-side PHP scripts to interface with the database. Because PedestrianCounter uses the PHP Object-Oriented DB connection style, the underlying database backend can be changed all in one place: `filename.php`.
+The PedestrianCounter system currently uses a MySQL database backend with server-side PHP scripts to interface with the database. Because PedestrianCounter uses the PHP Object-Oriented DB connection style, the underlying database backend can be changed all in one place: `Common.php`.
 
 Prerequisites for using PedestrianCounter:
 * Webserver that supports PHP 5 (`5.4.16` currently used)
