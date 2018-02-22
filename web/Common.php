@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_URI'] == "/domfabian1/Common.php") {
     Whoops!
 </h1>
 There is nothing to see here. Try going back to the
-    <a href="http://projects.cse.tamu.edu/domfabian1/">index page </a>
+    <a href="http://projects.cse.tamu.edu/domfabian1/">index page</a>
     .
 
 <?php

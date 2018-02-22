@@ -20,5 +20,5 @@
     $test = insertIntoDatabase($tableName);
     var_dump($test);
     echo "<br><br>";
-    //echo getNumDatabaseEntries($tableName);
+    echo getNumDatabaseEntries($tableName);
 ?>

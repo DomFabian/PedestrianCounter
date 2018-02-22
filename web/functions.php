@@ -13,7 +13,7 @@
 ***********************************************/    
 
     include('Common.php');
-    $debug = true;
+    $debug = false;
     $COMMON = new Common($debug);
 
     function insertIntoDatabase($table) {
