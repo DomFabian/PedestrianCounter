@@ -53,3 +53,10 @@
     }
 
 ?>
+
+<h1>
+    Whoops!
+</h1>
+There is nothing to see here. Try going back to the
+    <a href="http://projects.cse.tamu.edu/domfabian1/">index page </a>
+    .
