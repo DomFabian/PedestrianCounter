@@ -9,7 +9,9 @@
 **
 **   This file contains functions that test each of the functions
 ** that will be implemented for the server-side logic. The functions
-** under test can be found in functions.php.
+** under test can be found in functions.php. It also includes a
+** simple HTML interface by which anyone can run an integration test
+** on the functions and see the results.
 **
 ***********************************************/    
 
@@ -19,13 +21,13 @@
 
     function makeTestButton() {
         /* This function generates some HTML for a testing button. */
-    ?>
-    <h1>Integration Test</h1>
-    Press the below button to conduct an integration test: <br>
-    <form action="testCases.php" method="post">
-        <input type="submit" value="Test!">
-    </form>
-    <?php
+        ?>
+        <h1>Integration Test</h1>
+        Press the below button to conduct an integration test: <br>
+        <form action="testCases.php" method="post">
+            <input type="submit" value="Test!">
+        </form>
+        <?php
     }
 
     function printTestResult($passCond) {
