@@ -52,6 +52,20 @@
         return $row['COUNT(*)'];
     }
 
+    function sanitize($str) {
+        /* This function takes one parameter and returns a "sanitized"
+           version of that parameter.
+           Parameter is a string that contains any kind of characters.
+           The characters can be numbers, letters, special characters,
+           etc.
+           Return value will be another string with each of the non-
+           alphanumeric characters removed. */
+
+        // TODO: implement me!
+
+        return "abc";
+    }
+
 
     if ($_SERVER['REQUEST_URI'] == "/domfabian1/functions.php") {
 ?>
