@@ -11,7 +11,8 @@
 ** that will be implemented for the server-side logic. The functions
 ** under test can be found in functions.php. It also includes a
 ** simple HTML interface by which anyone can run an integration test
-** on the functions and see the results.
+** on the functions and see the results. The testing page can be 
+** found at: http://projects.cse.tamu.edu/domfabian1/testCases.php
 **
 ***********************************************/    
 
@@ -102,11 +103,11 @@
 
         foreach ($testStringArray as $str) {
             /* Using the ctype_alnum() function checks that each
-               chearcter in the returned string is an alphanumeric
+               character in the returned string is an alphanumeric
                character. If sanitize() works correctly, ctype_alnum
                will return true and this will not change the $passCond
                variable. */
-            $passCond = $passCond && (ctype_alnum(sanitize($str)));
+            $passCond = $passCond && ctype_alnum(sanitize($str));
         }
 
         
@@ -146,11 +147,11 @@
         test_handleArduinoPing();
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if ($_SERVER["REQUEST_METHOD"] === "GET") {
         // if just visiting site, be able to conduct a test
         makeTestButton();
     }
-    else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    else if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // if button pressed, conduct the test
         testAll();
     }
