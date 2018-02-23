@@ -13,8 +13,11 @@
 ***********************************************/    
 
     include('Common.php');
+
     $debug = false;
     $COMMON = new Common($debug);
+    
+    $secretKey = "ourSecretArduinoKey";
 
     function insertIntoDatabase($table) {
         /* This function takes one parameter and returns an error code.
@@ -66,6 +69,28 @@
         return "abc";
     }
 
+    function handleArduinoPing($key) {
+        /* This function takes one parameter and returns an
+           integer error code. handleArduinoPing() is the script
+           run by the webserver whenever the Arduino of the
+           PedestrianCounter detects that somebody has walked by
+           and sends a message to the webserver. This function
+           will be called whenever a POST request is made to the
+           webserver. The function ensures that a specific $key is
+           provided in the body of the HTTP POST request before
+           sending any information to the database.
+           Parameter is a string key.
+           Error code 0: unable to handle Arduino ping (DB error).
+           Error code -1: invalid key provided by Arduino.
+           Error code 1: successful handle of Arduino ping. */
+
+        // TODO: implement me!
+        
+        global $COMMON;
+        global $secretKey;
+
+        return ($key == $secretKey) ? 1 : -1;
+    }
 
     if ($_SERVER['REQUEST_URI'] == "/domfabian1/functions.php") {
 ?>

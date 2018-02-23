@@ -17,6 +17,24 @@
 
     $tableName = '`ArduinoTest`';
 
+    function makeTestButton() {
+        /* This function generates some HTML for a testing button. */
+    ?>
+    <h1>Integration Test</h1>
+    Press the below button to conduct an integration test: <br>
+    <form action="testCases.php" method="post">
+        <input type="submit" value="Test!">
+    </form>
+    <?php
+    }
+
+    function printTestResult($passCond) {
+        /* This function prints the pass/fail status of a test. */
+
+        echo $passCond ? "pass" : "fail";
+        echo "<br>\n";
+    }
+
     function test_insertIntoDatabase() {
         /* This function calls the insertIntoDatabase() function and
            checks that it actually creates a new row in the database.
@@ -40,8 +58,7 @@
 
         $passCond = (($test1 + $test2) == 1) && ($after == $before + 1);
         echo("test_insertIntoDatabase: ");
-        echo $passCond ? "pass" : "fail";
-        echo "<br>\n";
+        printTestResult($passCond);
     }
 
     function test_getNumDatabaseEntries() {
@@ -63,8 +80,7 @@
         }
         
         echo("test_getNumDatabaseEntries: ");
-        echo $passCond ? "pass" : "fail";
-        echo "<br>\n";
+        printTestResult($passCond);
     }
 
     function test_sanitize() {
@@ -82,7 +98,7 @@
 
         $passCond = true;
 
-        foreach ($str in $testStringArray) {
+        foreach ($testStringArray as $str) {
             /* Using the ctype_alnum() function checks that each
                chearcter in the returned string is an alphanumeric
                character. If sanitize() works correctly, ctype_alnum
@@ -93,8 +109,30 @@
 
         
         echo("test_sanitize: ");
-        echo $passCond ? "pass" : "fail";
-        echo "<br>\n";
+        printTestResult($passCond);
+    }
+
+    function test_handleArduinoPing() {
+        /* This function calls the handleArduinoPing() handler
+           function and ensures that it is able to make an entry
+           in the database when a valid key is received. It will
+           also ensure that proper error codes are returned in case
+           of a failure. */
+
+        global $secretKey;
+        $passCond = true;
+        
+        // test ability to make database entry
+        $ret = handleArduinoPing($secretKey);
+        $passCond = $passCond && ($ret == 1);
+
+        // test ability to identify bad key
+        $badKey = "badKey";
+        $ret = handleArduinoPing($badKey);
+        $passCond = $passCond && ($ret == -1);
+
+        echo("test_handleArduinoPing: ");
+        printTestResult($passCond);
     }
 
     function testAll() {
@@ -103,7 +141,15 @@
         test_insertIntoDatabase();
         test_getNumDatabaseEntries();
         test_sanitize();
+        test_handleArduinoPing();
     }
 
-    testAll();
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        // if just visiting site, be able to conduct a test
+        makeTestButton();
+    }
+    else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // if button pressed, conduct the test
+        testAll();
+    }
 ?>
