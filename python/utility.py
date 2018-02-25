@@ -10,5 +10,5 @@
 # TODO: implement
 # Post-condition: data is valid and ready to be sent to the database. May add 
 # this functionality to the database wrapper class in the future.
-def validate_data(data):
+def validateData(data):
     return True

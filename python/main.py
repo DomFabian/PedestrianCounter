@@ -13,12 +13,12 @@ from Arduino import *
 
 # Precondition: uno has been instantiated
 # Postcondition: returns whether uno correctly connected to the Uno
-def test_connect_arduino():
+def test_connectArduino():
     return hasattr(uno,'_handle')
 
 # Precondition: uno has been instantiated, there is an available read stream
 # Postcondition: returns whether data has been successfully sent to database
-def test_send_db_entry():
+def test_sendDBEntry():
     data = uno.read()
     size = dB.size
     dB.send(data)
@@ -26,17 +26,17 @@ def test_send_db_entry():
 
 # Precondition: uno has been instantiated
 # Postcondition: returns whether data is valid to send to database
-def test_validate_data():
+def test_validateData():
     data = uno.read()
-    return validate_data(data)
+    return validateData(data)
 
 # Precondition: uno has been instantiated, there is available read stream
 # Postcondition: prints result of all test_ functions included in main.py
-def test_all():
-    print ("Test connect_arduino(): ", test_connect_arduino())
-    print ("Test validate_data():   ", test_validate_data())
-    print ("Test send_db_entry():   ", test_send_db_entry())
+def testAll():
+    print ("Test connectArduino(): ", test_connectArduino())
+    print ("Test validateData():   ", test_validateData())
+    print ("Test sendDBEntry():   ", test_sendDBEntry())
 
 dB = DB()
 uno = ArduinoInteract()
-test_all()
+testAll()

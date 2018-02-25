@@ -13,16 +13,20 @@ class ArduinoInteract:
     # TODO: implement
     def connect(self):
         return 12345
+
     # TODO: implement
     def read(self):
         return DbEntry(1,2)
+
     # TODO: implement
-    def check_error_codes(self):
+    def checkErrorCodes(self):
         return False
+
     # Pre-condition: self exists
     # Post-condition: returns current _handle member
-    def get_handle(self):
+    def getHandle(self):
         return self.handle
+
     # TODO: implement fully
     def __init__(self):
         self._handle = self.connect()
