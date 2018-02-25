@@ -43,7 +43,9 @@
            checks that it actually creates a new row in the database.
            Both a valid $table name and an invalid $table name are
            supplied, which tests the function's ability to return each
-           of its possible error codes. */
+           of its possible error codes.
+           Pre-condition: connection to database established
+           Post-condition: new entry made in database table */
         
         global $tableName;
 
@@ -67,7 +69,9 @@
     function test_getNumDatabaseEntries() {
         /* This function calls the getNumDatabaseEntries() function and
            checks that it returns an updated number of entries in the
-           database each time a new entry is made. */
+           database each time a new entry is made.
+           Pre-condition: connection to database established
+           Post-condition: number of entries in table returned */
 
         global $tableName;
 
@@ -92,7 +96,9 @@
            sanitized string should have only alphanumeric 
            characters in it. Any characters that are not either
            numbers or letters A-Z and a-z should not appear in the
-           returned string of sanitize(). */
+           returned string of sanitize().
+           Pre-condition: arbitrary string provided
+           Post-condition: sanitized string returned */
 
         $testStringArray = array("thisIsInvalidString1",
                                  "this_is_invalid_string",
@@ -109,7 +115,6 @@
                variable. */
             $passCond = $passCond && ctype_alnum(sanitize($str));
         }
-
         
         echo("test_sanitize: ");
         printTestResult($passCond);
@@ -120,7 +125,10 @@
            function and ensures that it is able to make an entry
            in the database when a valid key is received. It will
            also ensure that proper error codes are returned in case
-           of a failure. */
+           of a failure.
+           Pre-condition: connection to database established
+           Post-condition: HTTP POST request handled by webserver,
+                           new entry made in database table */
 
         global $secretKey;
         $passCond = true;
