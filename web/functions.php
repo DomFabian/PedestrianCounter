@@ -64,9 +64,10 @@
            Return value will be another string with each of the non-
            alphanumeric characters removed. */
 
-        // TODO: implement me!
+        // allow only characters A-Z, a-z, or 0-9
+        $regex = "/[^A-Za-z0-9 ]/";
 
-        return "abc";
+        return preg_replace($regex, '', $str);
     }
 
     function handleArduinoPing($key) {
@@ -79,7 +80,7 @@
            webserver. The function ensures that a specific $key is
            provided in the body of the HTTP POST request before
            sending any information to the database.
-           Parameter is a string key.
+           Parameter is a string key from the Arduino.
            Error code 0: unable to handle Arduino ping (DB error).
            Error code -1: invalid key provided by Arduino.
            Error code 1: successful handle of Arduino ping. */
@@ -88,10 +89,25 @@
         
         global $COMMON;
         global $secretKey;
+        global $tableName;
 
-        return ($key == $secretKey) ? 1 : -1;
+        // always sanitize anything provided to the server
+        $safeKey = sanitize($key);
+
+        // check for invalid Arduino key or non-string input
+        if ($safeKey != $secretKey) {
+            return -1;
+        }
+        else {
+            $statusCode = insertIntoDatabase($tableName);
+            return $statusCode;
+        }
+
+
     }
 
+    // this file is included in other files, so only have an error
+    // message when this specific page is accessed.
     if ($_SERVER['REQUEST_URI'] == "/domfabian1/functions.php") {
 ?>
 

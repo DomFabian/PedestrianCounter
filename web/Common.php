@@ -49,7 +49,8 @@ class Common {
 	}			
 }
 
-
+// this file is included in other files, so only have an error
+// message when this specific page is accessed.
 if ($_SERVER['REQUEST_URI'] == "/domfabian1/Common.php") {
 ?>
 
