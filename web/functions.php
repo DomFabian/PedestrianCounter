@@ -84,8 +84,6 @@
            Error code 0: unable to handle Arduino ping (DB error).
            Error code -1: invalid key provided by Arduino.
            Error code 1: successful handle of Arduino ping. */
-
-        // TODO: implement me!
         
         global $COMMON;
         global $secretKey;
@@ -102,8 +100,6 @@
             $statusCode = insertIntoDatabase($tableName);
             return $statusCode;
         }
-
-
     }
 
     // this file is included in other files, so only have an error

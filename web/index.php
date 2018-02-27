@@ -23,17 +23,15 @@
     if ($_SERVER["REQUEST_METHOD"] === "GET") {
         // if just visiting site, not sending data to it
         
-        // TODO: define action; probs just some HTML filler
+        echo "<h1>Howdy</h1>\nIf you're an Arduino, POST your key.\n";
     }
     else if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // if attempting to send data to server
 
-        // TODO: perform test to see how a POST request should
-        //       be formatted as if the server had sent a form
-        //       to request the key from the Arudino client!
-        //          Maybe use BurpSuite proxy?
-
         $receivedKey = $_POST["key"];
         $statusCode = handleArduinoPing($receivedKey);
+
+        // send the Arduino a simple message about its POST request
+        echo ($statusCode == 1) ? "success" : "failure";
     }
 ?>
