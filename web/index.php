@@ -23,7 +23,18 @@
     if ($_SERVER["REQUEST_METHOD"] === "GET") {
         // if just visiting site, not sending data to it
         
-        echo "<h1>Howdy</h1>\nIf you're an Arduino, POST your key.\n";
+?>
+<h1>Howdy</h1>
+
+If you're an Arduino, POST your key.<br>
+
+<form action="index.php" method="post">
+    Enter your key:<br>
+    <input type="text" name="key" size="10" maxlength="30"><br>
+    <input type="submit" name="submit">
+</form>
+
+<?php
     }
     else if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // if attempting to send data to server
