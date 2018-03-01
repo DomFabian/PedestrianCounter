@@ -99,5 +99,5 @@ def sendWebserverPing(host, path, secretKey):
     # apparently Python has a ternary operator
     return 1 if isSuccessfulPing(serverResponse) else 0
 
-
+# for debug: delete when done
 print(sendWebserverPing(host, path, secretKey))
