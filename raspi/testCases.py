@@ -13,10 +13,16 @@
 
 from serverConnect import *
 
-# Note: uses global variables defined in serverConnect.py
+# Note: uses global variables defined in serverConnect.py:
+#       - host
+#       - path
+#       - secretKey
 
 def test_sendWebserverPing(host, path, secretKey):
-    ''' TODO: document and implement '''
+    ''' This function tests the sendWebserverPing() function
+        using the global variables declared in the serverConnect.py
+        file. It takes the same three parameters as the actual
+        sendWebserverPing() function. '''
 
     badSecretKey = 'invalidKey'
 
@@ -31,14 +37,32 @@ def test_sendWebserverPing(host, path, secretKey):
     return testCond
 
 def test_isSuccessfulPing():
-    ''' TODO: document and implement '''
+    ''' This function tests the isSuccessfulPing() function by using
+        three test strings. '''
+
+    # should yield True
+    testResponse1 = '''This is a filler string that\nis formatted weirdly\tbut
+                       should still\n yield a success'''
+
+    # should yield False
+    testResponse2 = '''howdy howdy howdy this is a string that\n\n\n\n\n\n
+                       will not yield a success because it is a failure'''
+
+    # should yield False
+    testResponse3 = '''\t\t\n This is a string that should show that the function
+                       defaults to a failure case\n'''
 
     testCond = True
+
+    testCond = testCond and (isSuccessfulPing(testResponse1) == True)
+    testCond = testCond and (isSuccessfulPing(testResponse2) == False)
+    testCond = testCond and (isSuccessfulPing(testResponse3) == False)
 
     return testCond
 
 def testAll():
-    ''' This function runs all of the above tests. '''
+    ''' This function runs all of the above tests using global variables
+        defined in serverConnect.py. '''
 
     test_sendWebserverPing(host, path, secretKey)
     test_isSuccessfulPing()
