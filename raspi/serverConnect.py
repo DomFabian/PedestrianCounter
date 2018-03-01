@@ -4,7 +4,7 @@
 ** Author:  Dominick Fabian
 ** Date:    03/01/18
 ** Section: 504
-** E-mail:  dominick@tamu.edu 
+** E-mail:  dominick@tamu.edu
 **
 **   This file contains all of the functions needed to handle
 ** connections between the Arduino and the webserver. The
@@ -19,6 +19,26 @@ from time import sleep
 host = 'projects.cse.tamu.edu'
 path = 'domfabian1/index.php'
 secretKey = 'ourSecretArduinoKey'
+
+def isSuccessfulPing(response):
+    ''' This function takes a single parameter and returns
+        a Boolean value. The parameter 'response' is a string
+        response from the webserver that contains either the
+        word "success" or the word "failure" at the end of the
+        response. If the response contains the word "success",
+        isSuccessfulPing() returns true. Otherwise, false.
+        Pre-conditions: none.
+        Post-conditions: same as before function called. '''
+
+    # if the reponse string is empty, the server didn't respond
+    if response == '':
+        return False
+
+    # break the server resposne into a list of individual words
+    wordList = response.split()
+    
+    # if the last word in the server response is "success", return True
+    return wordList[-1] == 'success'
 
 def sendWebserverPing(host, path, secretKey):
     ''' This function takes three string parameters: 'host',
@@ -76,6 +96,8 @@ def sendWebserverPing(host, path, secretKey):
     # close the server connection
     s.close()
 
+    # apparently Python has a ternary operator
+    return 1 if isSuccessfulPing(serverResponse) else 0
 
 
-
+print(sendWebserverPing(host, path, secretKey))
