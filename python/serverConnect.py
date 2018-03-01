@@ -6,9 +6,10 @@
 ** Section: 504
 ** E-mail:  dominick@tamu.edu 
 **
-**   This file contains the definition for the Common object, with its
-** functions. It is used by any and all PHP files that need to connect
-** to the PHPMyAdmin database for the 315 project 1.
+**   This file contains all of the functions needed to handle
+** connections between the Arduino and the webserver. The
+** webserver acts as an intermediary between the Arduino and 
+** the database for security reasons.
 **
 ***********************************************'''
 
