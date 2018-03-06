@@ -77,13 +77,22 @@
 	<li>by: Amanda Easter, Dominick Fabian, Ryan Garmeson</li>
 	</ul>
     <p><h5>The purpose of this project to track usage of the rec center's newly-opened South Entrance. The overall design uses an Arduino interface to measure the traffic, and send data to a web accessible page and database for further research.</h5></p>
-    <p style="margin-left: 40px;"><h5>Equipment:</h5></p>
+    <p style="margin-left: 40px;"><h3>Equipment:</h3></p>
     <p style="margin-left: 40px;">
         <ul>
         <li>Arduino Uno</li>
         <li>Raspberry Pi</li>
         </ul>
     </p>
+<p style="margin-left: 40px;"><h3>Using the Web Resources</h3></p>
+<p><h5>The PedestrianCounter system currently uses a MySQL database backend with server-side PHP scripts to interface with the database. Because PedestrianCounter uses the PHP Object-Oriented DB connection style, the underlying database backend can be changed all in one place: Common.php.</h5></p>
+<p><h5>Prerequisites for Pedestrian Counter:</h5></p>
+        <ul>
+        <li>Webserver that supports PHP 5 (5.4.16 currently used)</li>
+        <li>Database with MySQL database client version: libmysql - mysqlnd 5.0.10</li>
+        <li>PHPMyAdmin (4.4.15.10 currently used)</li>
+        </ul>
+<p><h5>Again, the flexible nature of the PHP Object-Oriented DB connection style makes changing databases relatively easy.</h5></p>
 	</section>
 	
 	<section id="Arduino">
@@ -101,14 +110,142 @@
     <a name="PHP"></a>
 	<div class="page-header"><h3>PHP</h3><hr class="notop"></div>
 <p style="margin-left: 40px;">
-	Basic description of PHP API</p>
-<h4>Include Files:</h4>
+	The purpose of the following php files and functions is to facilitate communication between the data the arduino is recieving and the database.</p>
+<h4>Classes:</h4>
 <p style="margin-left: 40px;">
 	<ul>
-    <li>functions.php: contains the functions used for the index page of the site</li>
-    <li>common.php: contains the functions used by any and all PHP files that need to connect to the PHPMyAdmin database</li>
+        <li><a href="#common" title="common">common.php</a></li>
+        <li><a href="#error" title="error">error.php</a></li>
+        <li><a href="#functions" title="functions">functions.php</a></li>
+        <li><a href="#index" title="index">index.php</a></li>
+        <li><a href="#testCases" title="testCases">testCases.php</a></li>
     </ul>
 </p>
+<a name="common"></a> 
+<div class="page-header"><h3>common.php</h3></div>
+<p style="margin-left: 40px;">
+	This file contains the definition for the Common object, with its functions. It is used by any and all PHP files that need to connect to the PHPMyAdmin database for the 315 project 1. It also displays an error message if the page is accessed directly or through another program</p>
+<h4>Field Summary:</h4>
+<table id="fields" style="width:100%">
+    
+    <tr>
+    <th>Type and Field</th>
+    <th>Description</th> 
+    </tr>
+    <tr>
+        <td>var $conn</td>
+        <td>Connection</td> 
+    </tr>
+    <tr>
+        <td>var $debug</td>
+        <td>True/False value to indicate whether debug mode is activated</td> 
+    </tr>
+    <tr>
+        <td>var $db</td>
+        <td>Contains database path</td> 
+    </tr>
+    <tr>
+        <td>var $dbname</td>
+        <td>Contains the name of the database</td> 
+    </tr>
+    <tr>
+        <td>var $user</td>
+        <td>Contains the name of the user</td> 
+    </tr>
+    <tr>
+        <td>var $pass</td>
+        <td>Contains password that must be matched in order for an Arduino to successfully submit data to the server</td> 
+    </tr>
+</table>
+<h4>Functions:</h4>
+<ul>
+<li><h5>Common</h5></li>
+    <p style="margin-left: 40px;"><strong>function Common($debug)</strong></p>
+    <p style="margin-left: 40px;">Determines if the program should run in debug mode.</p>
+    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
+    <p style="margin-left: 40px;">debug- True/False value representing whether the program should run in debug mode or not</p>
+<li><h5>connect</h5></li>
+    <p style="margin-left: 40px;"><strong>function connect($db)</strong></p>
+    <p style="margin-left: 40px;">Establishes a connection to the MySQL database server.</p>
+    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
+    <p style="margin-left: 40px;">db- database path</p>
+<li><h5>executeQuery</h5></li>
+    <p style="margin-left: 40px;"><strong>function executeQuery($sql, $filename)</strong></p>
+    <p style="margin-left: 40px;">Executes a MySQL query</p>
+    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
+    <p style="margin-left: 40px;">sql- MySQL command</p>
+    <p style="margin-left: 40px;">filename- File name</p>
+</ul>
+    
+<a name="error"></a> 
+<div class="page-header"><h3>error.php</h3></div>
+<p style="margin-left: 40px;">
+	This file contains a way for displaying error information when a runtime error occurs.</p>
+
+<a name="functions"></a> 
+<div class="page-header"><h3>functions.php</h3></div>
+<p style="margin-left: 40px;">
+	This file contains the definition for the Common object, with its functions. It is used by any and all PHP files that need to connect to the PHPMyAdmin database for the 315 project 1.</p>
+<h4>Field Summary:</h4>
+<table id="fields" style="width:100%">
+    
+    <tr>
+    <th>Type and Field</th>
+    <th>Description</th> 
+    </tr>
+    <tr>
+        <td>var $conn</td>
+        <td>Connection</td> 
+    </tr>
+    <tr>
+        <td>var $debug</td>
+        <td>True/False value to indicate whether debug mode is activated</td> 
+    </tr>
+    <tr>
+        <td>var $db</td>
+        <td>Contains database path</td> 
+    </tr>
+    <tr>
+        <td>var $dbname</td>
+        <td>Contains the name of the database</td> 
+    </tr>
+    <tr>
+        <td>var $user</td>
+        <td>Contains the name of the user</td> 
+    </tr>
+    <tr>
+        <td>var $pass</td>
+        <td>Contains password that must be matched in order for an Arduino to successfully submit data to the server</td> 
+    </tr>
+</table>
+<h4>Functions:</h4>
+<ul>
+<li><h5>Common</h5></li>
+    <p style="margin-left: 40px;"><strong>function Common($debug)</strong></p>
+    <p style="margin-left: 40px;">Determines if the program should run in debug mode.</p>
+    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
+    <p style="margin-left: 40px;">debug- True/False value representing whether the program should run in debug mode or not</p>
+<li><h5>connect</h5></li>
+    <p style="margin-left: 40px;"><strong>function connect($db)</strong></p>
+    <p style="margin-left: 40px;">Establishes a connection to the MySQL database server.</p>
+    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
+    <p style="margin-left: 40px;">db- database path</p>
+<li><h5>executeQuery</h5></li>
+    <p style="margin-left: 40px;"><strong>function executeQuery($sql, $filename)</strong></p>
+    <p style="margin-left: 40px;">Executes a MySQL query</p>
+    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
+    <p style="margin-left: 40px;">sql- MySQL command</p>
+    <p style="margin-left: 40px;">filename- File name</p>
+</ul>
+
+<a name="index"></a> 
+<div class="page-header"><h3>index.php</h3></div>
+<p style="margin-left: 40px;">
+	This file contains the definition for the Common object, with its functions. It is used by any and all PHP files that need to connect to the PHPMyAdmin database for the 315 project 1.</p>
+<a name="testCases"></a> 
+<div class="page-header"><h3>testCases.php</h3></div>
+<p style="margin-left: 40px;">
+	This file contains the definition for the Common object, with its functions. It is used by any and all PHP files that need to connect to the PHPMyAdmin database for the 315 project 1.</p>
 </section>
         
 <section id="Python">
