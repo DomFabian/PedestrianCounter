@@ -55,8 +55,6 @@
 			<li><a href="#arduino" title="Arduino">Arduino</a></li>
 			<li><a href="#PHP" title="PHP" class="">PHP</a></li>
 			<li><a href="#python" title="Python" class="">Python</a></li>
-			
-            </a></li>
 
 		</ul>
 		
@@ -66,17 +64,14 @@
     <a name="summary"></a> 
 
 	<h1>Team 50 API</h1>
-	
-	<div id="documenter_buttons">
-		
-	</div>
+
 	<hr>
 	<ul>
-	<li>created: 01/27/2018</li>
-	<li>latest update: 01/27/2018</li>
-	<li>by: Amanda Easter, Dominick Fabian, Ryan Garmeson</li>
+        <li>created: 01/27/2018</li>
+        <li>latest update: 01/27/2018</li>
+        <li>by: Amanda Easter, Dominick Fabian, Ryan Garmeson</li>
 	</ul>
-    <p><h5>The purpose of this project to track usage of the rec center's newly-opened South Entrance. The overall design uses an Arduino interface to measure the traffic, and send data to a web accessible page and database for further research.</h5></p>
+        <h5>The purpose of this project to track usage of the rec center's newly-opened South Entrance. The overall design uses an Arduino interface to measure the traffic, and send data to a web accessible page and database for further research.</h5>
     <p style="margin-left: 40px;"><h3>Equipment:</h3></p>
     <p style="margin-left: 40px;">
         <ul>
@@ -98,7 +93,7 @@
 	<section id="Arduino">
     <a name="arduino"></a> 
 	<div class="page-header"><h3>Arduino</h3><hr class="notop"></div>
-<p style="margin-left:.5in;">
+<p style="margin-left: 40px;">
 	Basic description of Arduino API</p>
     <h4>Include Files:</h4>
     <p style="margin-left: 40px;">
@@ -362,26 +357,27 @@
 <section id="Python">
     <a name=python></a>
 <div class="page-header"><h3>Python</h3><hr class="notop"></div>
-<p style="margin-left:.5in;">
+<p style="margin-left: 40px;">
 	This code allows the Arduino Uno and Raspberry Pi to interact with the database</p>
     <h4>Classes:</h4>
 <p style="margin-left: 40px;">
 	<ul>
-        <li><a href="#arduino.py" title="arduino.py">Arduino.py</a></li>
-        <li><a href="#database.py" title="database.py">database.py</a></li>
+        <li><a href="#arduinoint" title="arduinoint">ArduinoInteract</a></li>
+        <li><a href="#DbEntry" title="DbEntry">DbEntry</a></li>
+        <li><a href="#DB" title="DB">DB</a></li>
         <li><a href="#main.py" title="main.py">main.py</a></li>
         <li><a href="#utility.py" title="utility.py">utility.py</a></li>
         <li><a href="#serverConnect.py" title="serverConnect.py">serverConnect.py</a></li>
         <li><a href="#testCases.py" title="testCases.py">testCases.py</a></li>
     </ul>
 </p>
-<a name="arduino.py"></a> 
-<div class="page-header"><h3>Arduino.py</h3></div>
+<a name="arduinoint"></a> 
+<div class="page-header"><h3>ArduinoInteract</h3></div>
 <p style="margin-left: 40px;">
 	Python code to interact with the Arduino Uno</p>
 <h4>Imports:</h4>
 <ul>
-    <li>database</li>
+    <li>from database import *</li>
 </ul>
 <h4>Functions:</h4>
 <ul>
@@ -415,6 +411,7 @@
     <p style="margin-left: 40px;">self- Arduino connection</p>
     <p style="margin-left: 40px;"></p></div>
     <br>
+<div class="info">
 <li><h5>__init__</h5></li>
     <p style="margin-left: 40px;"><strong>def __init__(self)</strong></p>
     <p style="margin-left: 40px;">Implements the handles and connections</p>
@@ -424,8 +421,8 @@
     <br>
 </ul>
 
-<a name="database.py"></a> 
-<div class="page-header"><h3>database.py</h3></div>
+<a name="DbEntry"></a> 
+<div class="page-header"><h3>DbEntry</h3></div>
 <p style="margin-left: 40px;">
 	Python code to interact with the Arduino Uno</p>
 <h4>Imports:</h4>
@@ -444,6 +441,18 @@
     <p style="margin-left: 40px;">n- Stores self count</p>
     <p style="margin-left: 40px;">t- Stores self time</p></div>
     <br>
+</ul>
+
+<a name="DB"></a> 
+<div class="page-header"><h3>DB</h3></div>
+<p style="margin-left: 40px;">
+	Python code to interact with the Arduino Uno</p>
+<h4>Imports:</h4>
+<ul>
+    <li>none</li>
+</ul>
+<h4>Functions:</h4>
+<ul>
 <div class="info">
 <li><h5>send</h5></li>
     <p style="margin-left: 40px;"><strong>def send(self, data)</strong></p>
@@ -466,46 +475,22 @@
 <div class="page-header"><h3>main.py</h3></div>
 <p style="margin-left: 40px;">
 	Python code to interact with the Arduino Uno</p>
-<h4>Field Summary:</h4>
-<table id="fields" style="width:100%">
-    
-    <tr>
-    <th>Type and Field</th>
-    <th>Description</th> 
-    </tr>
-    <tr>
-        <td>var $conn</td>
-        <td>Connection</td> 
-    </tr>
-    <tr>
-        <td>var $debug</td>
-        <td>True/False value to indicate whether debug mode is activated</td> 
-    </tr>
-    <tr>
-        <td>var $db</td>
-        <td>Contains database path</td> 
-    </tr>
-    <tr>
-        <td>var $dbname</td>
-        <td>Contains the name of the database</td> 
-    </tr>
-    <tr>
-        <td>var $user</td>
-        <td>Contains the name of the user</td> 
-    </tr>
-    <tr>
-        <td>var $pass</td>
-        <td>Contains password that must be matched in order for an Arduino to successfully submit data to the server</td> 
-    </tr>
-</table>
+<h4>Imports:</h4>
+<ul>
+    <li>from database import *</li>
+    <li>from utility import *</li>
+    <li>from Arduino import *</li>
+</ul>
 <h4>Functions:</h4>
 <ul>
 <div class="info">
-<li><h5>Common</h5></li>
-    <p style="margin-left: 40px;"><strong>function Common($debug)</strong></p>
+<li><h5>test_connectArduino</h5></li>
+    <p style="margin-left: 40px;"><strong>def test_connectArduino()</strong></p>
     <p style="margin-left: 40px;">Determines if the program should run in debug mode.</p>
     <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">debug- True/False value representing whether the program should run in debug mode or not</p></div>
+    <p style="margin-left: 40px;">debug- True/False value representing whether the program should run in debug mode or not</p>
+    <p style="margin-left: 40px;"><strong> Precondition:</strong> uno has been instantiated</p>
+    <p style="margin-left: 40px;"><strong>Postcondition:</strong> returns whether uno correctly connected to the Uno</p></div>
     <br>
 <div class="info">
 <li><h5>connect</h5></li>
