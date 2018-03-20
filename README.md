@@ -9,3 +9,5 @@ Prerequisites for using PedestrianCounter:
 * PHPMyAdmin (`4.4.15.10` currently used)
 
 Again, the flexible nature of the PHP Object-Oriented DB connection style makes changing databases relatively easy.
+
+API: http://projects.cse.tamu.edu/easter97/
