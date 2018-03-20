@@ -15,18 +15,16 @@
 
     include('Common.php');
 
-    $debug = true;
+    $debug = false;
     $COMMON = new Common($debug);
 
-    function getAllDatabaseEntries($table) {
+    function getAllTimestamps($table) {
         /* This function takes one parameter and returns
            an array of all of the entries in the database.
            In the event of an error, an empty array is returned.
-           Note that the returned array is a two-dimensional
-           array that has the entry ID as the first index and
-           the datetime as the second index. For example,
-           array[0]['time'] would give the timestamp of the 
-           first entry in the database table.
+           Note that the returned array is an array of integers
+           with each of the integers representing the UNIX time
+           of the entry's timestamp.
            Pre-conditions: connection with database is already
                            established.
            Post-conditions: a database query to get all of the
@@ -45,13 +43,38 @@
         else {
             $array = array();
 
-            // loop through results and store in the array
+            // loop through results and store each entry in the array
+            // each entry in array is an
             while($row = $rs->fetch(PDO::FETCH_ASSOC)) {
-                $array[] = $row;
+                array_push($array, strtotime($row['time']));
             }
         }
 
         return $array;
+    }
+
+    function countEntriesBetweenTimes($array, $startTime, $endTime) {
+        /* This function returns the number of times in an array
+           that fall between a start time and an end time. This
+           function requires that all times be in UNIX time.
+           Pre-conditions: the input array has all of the times in
+                           UNIX time format as an integer.
+           Post-conditions: none. */
+
+        $count = 0;
+
+        // if start time is after end time, there are none
+        if($startTime > $endTime) {
+            return $count;
+        }
+
+        foreach($array as $time) {
+            if ($time >= $startTime && $time <= $endTime) {
+                $count++;
+            }
+        }
+
+        return $count;
     }
 
 

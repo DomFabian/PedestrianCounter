@@ -23,7 +23,7 @@
     include('fusioncharts/fusioncharts.php');
 
     $table = '`ArduinoTest`';
-    $a = getAllDatabaseEntries($table);
+    $array = getAllTimestamps($table);
 ?>
 
 <html>
@@ -36,15 +36,34 @@
     <body>
         <h1>Foot Traffic Statistics</h1>
         <h2>Summary</h2>
-        Average number of students per hour: TODO<br>
-        Average number of students per day: TODO<br>
-        Average number of students per week: TODO<br>
-        Average number of students per month: TODO<br>
-        Average number of students per year: TODO<br>
-
-
-
         <?php
+
+            $hour = 60 * 60;
+            $day = 24 * $hour;
+            $week = 7 * $day;
+            $month = 30 * $day;
+            $year = 12 * $month;
+
+            $timezoneOffset = 5 * 60 * 60;
+            $now = strtotime("now") - $timezoneOffset;
+            $beginningOfTime = -999999999999;
+
+            $count1 = countEntriesBetweenTimes($array, $now - $hour, $now);
+            $count2 = countEntriesBetweenTimes($array, $now - $day, $now);
+            $count3 = countEntriesBetweenTimes($array, $now - $week, $now);
+            $count4 = countEntriesBetweenTimes($array, $now - $month, $now);
+            $count5 = countEntriesBetweenTimes($array, $now - $year, $now);
+            $count6 = countEntriesBetweenTimes($array, $beginningOfTime, $now);
+
+            echo "Number of students in past hour: $count1<br>";
+            echo "Number of students in past day: $count2<br>";
+            echo "Number of students in past week: $count3<br>";
+            echo "Number of students in past month: $count4<br>";
+            echo "Number of students in past year: $count5<br>";
+            echo "Number of students total: $count6<br>";
+
+            echo '<br>';
+
         /**
           *  Syntax for the constructor: `FusionCharts("type of * chart", "unique chart id", "width of chart", 
           *  "height of chart", "div id to render the chart", "data format", "data source")`
@@ -78,6 +97,6 @@
             // render the constructed chart as chart-1
             $columnChart->render();
         ?>
-        <div id="chart-1"><!-- Fusion Charts will render here--></div>
+        <div id="chart-1"><!-- chart-1 will render here--></div>
     </body>
 </html>
