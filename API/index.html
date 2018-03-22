@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<!-- saved from url=(0052)http://www.nasatheme.com/support/digi-documentation/ -->
-<html lang="en-us"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
-	
-	<title>Team 50 API</title>
+<!--
+ * File:    index.html
+ * Project: CSCE 315 Project 1, Spring 2018
+ * Author:  Amanda Easter
+ * Date:    03/22/18
+ * Section: 504
+ * E-mail:  easter97@tamu.edu
+ *
+-->
+<title>Team 50 API</title>
 	
 	<meta name="description" content="">
 	<meta name="author" content="Amanda Easter, Dominick Fabian, Ryan Garmeson">
 	
-	<link rel="stylesheet" href="./documenter_style.css" media="all">
+	<link rel="stylesheet" href="./style.css" >
 
 	<style>
 		html{background-color:#FFFFFF;color:#383838;}
@@ -18,31 +22,20 @@
 		.btn {
 			border-radius:3px;
 		}
-		.btn-primary {
-			  background-image: -moz-linear-gradient(top, #0088CC, #0044CC);
-			  background-image: -ms-linear-gradient(top, #0088CC, #0044CC);
-			  background-image: -webkit-gradient(linear, 0 0, 0 0088CC%, from(#DDDDDD), to(#0044CC));
-			  background-image: -webkit-linear-gradient(top, #0088CC, #0044CC);
-			  background-image: -o-linear-gradient(top, #0088CC, #0044CC);
-			  background-image: linear-gradient(top, #0088CC, #0044CC);
-			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088CC', endColorstr='#0044CC', GradientType=0);
-			  border-color: #0044CC #0044CC #bfbfbf;
-			  color:#FFFFFF;
-		}
 		.btn-primary:hover,
 		.btn-primary:active,
 		.btn-primary.active,
 		.btn-primary.disabled,
 		.btn-primary[disabled] {
-		  border-color: #0088CC #0088CC #bfbfbf;
-		  background-color: #0044CC;
+		  border-color: #500000 #500000 #d1d3d4;
+		  background-color: #1d3362;
 		}
 		hr{border-top:1px solid #EBEBEB;border-bottom:1px solid #FFFFFF;}
 		#documenter_sidebar, #documenter_sidebar ul a{background-color:#DDDDDD;color:#222222;}
 		#documenter_sidebar ul a{-webkit-text-shadow:1px 1px 0px #EEEEEE;-moz-text-shadow:1px 1px 0px #EEEEEE;text-shadow:1px 1px 0px #EEEEEE;}
 		#documenter_sidebar ul{border-top:1px solid #AAAAAA;}
 		#documenter_sidebar ul a{border-top:1px solid #EEEEEE;border-bottom:1px solid #AAAAAA;color:#444444;}
-		#documenter_sidebar ul a:hover{background:#444444;color:#DDDDDD;border-top:1px solid #444444;}
+		#documenter_sidebar ul a:hover{background:#500000;color:#DDDDDD;border-top:1px solid #444444;}
 		#documenter_sidebar ul a.current{background:#444444;color:#DDDDDD;border-top:1px solid #444444;}
 		#documenter_copyright{display:block !important;visibility:visible !important;}
 	</style>
@@ -63,12 +56,12 @@
 	<section id="documenter_cover">
     <a name="summary"></a> 
 
-	<h1>Team 50 API</h1>
+        <h1><font color=#500000>Team 50 API</font></h1>
 
 	<hr>
 	<ul>
         <li>created: 01/27/2018</li>
-        <li>latest update: 01/27/2018</li>
+        <li>latest update: 03/22/2018</li>
         <li>by: Amanda Easter, Dominick Fabian, Ryan Garmeson</li>
 	</ul>
         <h5>The purpose of this project to track usage of the rec center's newly-opened South Entrance. The overall design uses an Arduino interface to measure the traffic, and send data to a web accessible page and database for further research.</h5>
@@ -76,7 +69,7 @@
     <p style="margin-left: 40px;">
         <ul>
         <li>Arduino Uno</li>
-        <li>Raspberry Pi</li>
+        <li>Raspberry Pi 3, Model B</li>
         </ul>
     </p>
 <p style="margin-left: 40px;"><h3>Using the Web Resources</h3></p>
@@ -272,7 +265,7 @@
     <th>Description</th> 
     </tr>
     <tr>
-        <td>var $tablename/td>
+        <td>var $tablename</td>
         <td>Name of table</td> 
     </tr>
 </table>
@@ -362,219 +355,19 @@
     <h4>Classes:</h4>
 <p style="margin-left: 40px;">
 	<ul>
-        <li><a href="#arduinoint" title="arduinoint">ArduinoInteract</a></li>
-        <li><a href="#DbEntry" title="DbEntry">DbEntry</a></li>
-        <li><a href="#DB" title="DB">DB</a></li>
-        <li><a href="#main.py" title="main.py">main.py</a></li>
-        <li><a href="#utility.py" title="utility.py">utility.py</a></li>
         <li><a href="#serverConnect.py" title="serverConnect.py">serverConnect.py</a></li>
         <li><a href="#testCases.py" title="testCases.py">testCases.py</a></li>
     </ul>
 </p>
-<a name="arduinoint"></a> 
-<div class="page-header"><h3>ArduinoInteract</h3></div>
-<p style="margin-left: 40px;">
-	Python code to interact with the Arduino Uno</p>
-<h4>Imports:</h4>
-<ul>
-    <li>from database import *</li>
-</ul>
-<h4>Functions:</h4>
-<ul>
-<div class="info">
-<li><h5>connect</h5></li>
-    <p style="margin-left: 40px;"><strong>def connect(self)</strong></p>
-    <p style="margin-left: 40px;">Establishes the Arduino's connection</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">self- Arduino connection</p></div>
-    <br>
-<div class="info">
-<li><h5>read</h5></li>
-    <p style="margin-left: 40px;"><strong>def read(self)</strong></p>
-    <p style="margin-left: 40px;">Reads database entry to confirm connection</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">self- Arduino connection</p></div>
-    <br>
-<div class="info">
-<li><h5>checkErrorCodes</h5></li>
-    <p style="margin-left: 40px;"><strong>def checkErrorCodes(self)</strong></p>
-    <p style="margin-left: 40px;">Checks for any errors generated by the connection</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">self- Arduino connection</p>
-    <p style="margin-left: 40px;"></p></div>
-    <br>
-<div class="info">
-<li><h5>getHandle</h5></li>
-    <p style="margin-left: 40px;"><strong>def getHandle(self)</strong></p>
-    <p style="margin-left: 40px;">Pre-condition: self exists, Post-condition: returns current _handle member</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">self- Arduino connection</p>
-    <p style="margin-left: 40px;"></p></div>
-    <br>
-<div class="info">
-<li><h5>__init__</h5></li>
-    <p style="margin-left: 40px;"><strong>def __init__(self)</strong></p>
-    <p style="margin-left: 40px;">Implements the handles and connections</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">self- Arduino connection</p>
-    <p style="margin-left: 40px;"></p></div>
-    <br>
-</ul>
-
-<a name="DbEntry"></a> 
-<div class="page-header"><h3>DbEntry</h3></div>
-<p style="margin-left: 40px;">
-	Python code to interact with the Arduino Uno</p>
-<h4>Imports:</h4>
-<ul>
-    <li>none</li>
-</ul>
-<h4>Functions:</h4>
-<ul>
-<div class="info">
-<li><h5>__init__</h5></li>
-    <p style="margin-left: 40px;"><strong>def __init__(self, n, t)</strong></p>
-    <p style="margin-left: 40px;">Pre-condition: n and t are reasonable data type,
-    Post-condition: DbEntry exists</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">self- Arduino connection</p>
-    <p style="margin-left: 40px;">n- Stores self count</p>
-    <p style="margin-left: 40px;">t- Stores self time</p></div>
-    <br>
-</ul>
-
-<a name="DB"></a> 
-<div class="page-header"><h3>DB</h3></div>
-<p style="margin-left: 40px;">
-	Python code to interact with the Arduino Uno</p>
-<h4>Imports:</h4>
-<ul>
-    <li>none</li>
-</ul>
-<h4>Functions:</h4>
-<ul>
-<div class="info">
-<li><h5>send</h5></li>
-    <p style="margin-left: 40px;"><strong>def send(self, data)</strong></p>
-    <p style="margin-left: 40px;">Establishes a connection to the MySQL database server.</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">self- Arduino connection</p>
-    <p style="margin-left: 40px;">data- Data to send</p>
-    </div>
-    <br>
-<div class="info">
-<li><h5>__init__</h5></li>
-    <p style="margin-left: 40px;"><strong>def __init__(self)</strong></p>
-    <p style="margin-left: 40px;">Sets size to 0</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">self- Arduino connection</p></div>
-    <br>
-</ul>
-
-<a name="main.py"></a> 
-<div class="page-header"><h3>main.py</h3></div>
-<p style="margin-left: 40px;">
-	Python code to interact with the Arduino Uno</p>
-<h4>Imports:</h4>
-<ul>
-    <li>from database import *</li>
-    <li>from utility import *</li>
-    <li>from Arduino import *</li>
-</ul>
-<h4>Functions:</h4>
-<ul>
-<div class="info">
-<li><h5>test_connectArduino</h5></li>
-    <p style="margin-left: 40px;"><strong>def test_connectArduino()</strong></p>
-    <p style="margin-left: 40px;">Determines if the program should run in debug mode.</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">debug- True/False value representing whether the program should run in debug mode or not</p>
-    <p style="margin-left: 40px;"><strong> Precondition:</strong> uno has been instantiated</p>
-    <p style="margin-left: 40px;"><strong>Postcondition:</strong> returns whether uno correctly connected to the Uno</p></div>
-    <br>
-<div class="info">
-<li><h5>connect</h5></li>
-    <p style="margin-left: 40px;"><strong>function connect($db)</strong></p>
-    <p style="margin-left: 40px;">Establishes a connection to the MySQL database server.</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">db- database path</p></div>
-    <br>
-<div class="info">
-<li><h5>executeQuery</h5></li>
-    <p style="margin-left: 40px;"><strong>function executeQuery($sql, $filename)</strong></p>
-    <p style="margin-left: 40px;">Executes a MySQL query</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">sql- MySQL command</p>
-    <p style="margin-left: 40px;">filename- File name</p></div>
-    <br>
-</ul>
-
-<a name="utility.py"></a> 
-<div class="page-header"><h3>utility.py</h3></div>
-<p style="margin-left: 40px;">
-	Python code to interact with the Arduino Uno</p>
-<h4>Field Summary:</h4>
-<table id="fields" style="width:100%">
-    
-    <tr>
-    <th>Type and Field</th>
-    <th>Description</th> 
-    </tr>
-    <tr>
-        <td>var $conn</td>
-        <td>Connection</td> 
-    </tr>
-    <tr>
-        <td>var $debug</td>
-        <td>True/False value to indicate whether debug mode is activated</td> 
-    </tr>
-    <tr>
-        <td>var $db</td>
-        <td>Contains database path</td> 
-    </tr>
-    <tr>
-        <td>var $dbname</td>
-        <td>Contains the name of the database</td> 
-    </tr>
-    <tr>
-        <td>var $user</td>
-        <td>Contains the name of the user</td> 
-    </tr>
-    <tr>
-        <td>var $pass</td>
-        <td>Contains password that must be matched in order for an Arduino to successfully submit data to the server</td> 
-    </tr>
-</table>
-<h4>Functions:</h4>
-<ul>
-<div class="info">
-<li><h5>Common</h5></li>
-    <p style="margin-left: 40px;"><strong>function Common($debug)</strong></p>
-    <p style="margin-left: 40px;">Determines if the program should run in debug mode.</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">debug- True/False value representing whether the program should run in debug mode or not</p></div>
-    <br>
-<div class="info">
-<li><h5>connect</h5></li>
-    <p style="margin-left: 40px;"><strong>function connect($db)</strong></p>
-    <p style="margin-left: 40px;">Establishes a connection to the MySQL database server.</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">db- database path</p></div>
-    <br>
-<div class="info">
-<li><h5>executeQuery</h5></li>
-    <p style="margin-left: 40px;"><strong>function executeQuery($sql, $filename)</strong></p>
-    <p style="margin-left: 40px;">Executes a MySQL query</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">sql- MySQL command</p>
-    <p style="margin-left: 40px;">filename- File name</p></div>
-    <br>
-</ul>
-
 <a name="serverConnect.py"></a> 
 <div class="page-header"><h3>serverConnect.py</h3></div>
 <p style="margin-left: 40px;">
-	Python code to interact with the Arduino Uno</p>
+	This file contains all of the functions needed to handle connections between the Arduino and the webserver. The webserver acts as an intermediary between the Arduino and the database for security reasons.</p>
+<h4>Imports:</h4>
+<ul>
+    <li>import socket</li>
+    <li>from time import sleep</li>
+</ul>
 <h4>Field Summary:</h4>
 <table id="fields" style="width:100%">
     
@@ -583,60 +376,58 @@
     <th>Description</th> 
     </tr>
     <tr>
-        <td>var $conn</td>
-        <td>Connection</td> 
+        <td>host</td>
+        <td>Name of host</td> 
     </tr>
     <tr>
-        <td>var $debug</td>
-        <td>True/False value to indicate whether debug mode is activated</td> 
+        <td>path</td>
+        <td>Path for web address</td> 
     </tr>
     <tr>
-        <td>var $db</td>
-        <td>Contains database path</td> 
-    </tr>
-    <tr>
-        <td>var $dbname</td>
-        <td>Contains the name of the database</td> 
-    </tr>
-    <tr>
-        <td>var $user</td>
-        <td>Contains the name of the user</td> 
-    </tr>
-    <tr>
-        <td>var $pass</td>
-        <td>Contains password that must be matched in order for an Arduino to successfully submit data to the server</td> 
+        <td>secretKey</td>
+        <td>Key to validate Arduino data</td> 
     </tr>
 </table>
 <h4>Functions:</h4>
 <ul>
 <div class="info">
-<li><h5>Common</h5></li>
-    <p style="margin-left: 40px;"><strong>function Common($debug)</strong></p>
-    <p style="margin-left: 40px;">Determines if the program should run in debug mode.</p>
+<li><h5>isSuccessfulPing</h5></li>
+    <p style="margin-left: 40px;"><strong>def isSuccessfulPing(response)</strong></p>
+    <p style="margin-left: 40px;">This function takes a single parameter and returns a Boolean value. If the response contains the word "success", isSuccessfulPing() returns true. Otherwise, false.
+        <br>
+    Pre-conditions: none.
+        <br>
+    Post-conditions: same as before function called.</p>
     <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">debug- True/False value representing whether the program should run in debug mode or not</p></div>
+    <p style="margin-left: 40px;">response- a string response from the webserver that contains either the word "success" or the word "failure" at the end of the response</p></div>
     <br>
 <div class="info">
-<li><h5>connect</h5></li>
-    <p style="margin-left: 40px;"><strong>function connect($db)</strong></p>
-    <p style="margin-left: 40px;">Establishes a connection to the MySQL database server.</p>
+<li><h5>sendWebServerPing</h5></li>
+    <p style="margin-left: 40px;"><strong>def sendWebserverPing(host, path, secretKey)</strong></p>
+    <p style="margin-left: 40px;">This function takes three string parameters: 'host','path', and 'secretKey'. 'secretKey'. sendWebserverPing() returns an integer as a status code: 
+        <br>
+        status code 0: failed to send message to the webserver.
+        <br>
+        status code 1: successful message sent to webserver.
+        <br>
+    Pre-conditions: socket library imported and time.sleep() function imported.
+        <br>
+    Post-conditions: database has one more entry in it than before, corresponding to the message sent.</p>
     <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">db- database path</p></div>
-    <br>
-<div class="info">
-<li><h5>executeQuery</h5></li>
-    <p style="margin-left: 40px;"><strong>function executeQuery($sql, $filename)</strong></p>
-    <p style="margin-left: 40px;">Executes a MySQL query</p>
-    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">sql- MySQL command</p>
-    <p style="margin-left: 40px;">filename- File name</p></div>
+    <p style="margin-left: 40px;">host-represents the base URL of the webserver's domain name like "example.com" </p>
+    <p style="margin-left: 40px;">path-represents the path on the domain that leads to the webserver like "about/info/page" </p>
+    <p style="margin-left: 40px;">secretKey-is the secret Arduino key that insulates our database from any old person trying to insert into our database" </p></div>
     <br>
 </ul>
 
 <a name="testCases.py"></a> 
 <div class="page-header"><h3>testCases.py</h3></div>
 <p style="margin-left: 40px;">
-	Python code to interact with the Arduino Uno</p>
+	This file contains all of the functions that test the functions found in serverConnect.py.</p>
+<h4>Imports:</h4>
+<ul>
+    <li>from serverConnect import *</li>
+</ul>
 <h4>Field Summary:</h4>
 <table id="fields" style="width:100%">
     
@@ -645,55 +436,46 @@
     <th>Description</th> 
     </tr>
     <tr>
-        <td>var $conn</td>
-        <td>Connection</td> 
+        <td>host</td>
+        <td>Name of host (defined in serverConnect.py)</td> 
     </tr>
     <tr>
-        <td>var $debug</td>
-        <td>True/False value to indicate whether debug mode is activated</td> 
+        <td>path</td>
+        <td>Path for web address (defined in serverConnect.py)</td> 
     </tr>
     <tr>
-        <td>var $db</td>
-        <td>Contains database path</td> 
-    </tr>
-    <tr>
-        <td>var $dbname</td>
-        <td>Contains the name of the database</td> 
-    </tr>
-    <tr>
-        <td>var $user</td>
-        <td>Contains the name of the user</td> 
-    </tr>
-    <tr>
-        <td>var $pass</td>
-        <td>Contains password that must be matched in order for an Arduino to successfully submit data to the server</td> 
+        <td>secretKey</td>
+        <td>Key to validate Arduino data (defined in serverConnect.py)</td> 
     </tr>
 </table>
 <h4>Functions:</h4>
 <ul>
 <div class="info">
-<li><h5>Common</h5></li>
-    <p style="margin-left: 40px;"><strong>function Common($debug)</strong></p>
-    <p style="margin-left: 40px;">Determines if the program should run in debug mode.</p>
+<li><h5>test_sendWebserverPing</h5></li>
+    <p style="margin-left: 40px;"><strong>def test_sendWebserverPing(host, path, secretKey)</strong></p>
+    <p style="margin-left: 40px;">This function tests the sendWebserverPing() function using the global variables declared in the serverConnect.py file. It takes the same three parameters as the actual sendWebserverPing() function.</p>
     <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">debug- True/False value representing whether the program should run in debug mode or not</p></div>
+    <p style="margin-left: 40px;">host-represents the base URL of the webserver's domain name like "example.com" </p>
+    <p style="margin-left: 40px;">path-represents the path on the domain that leads to the webserver like "about/info/page" </p>
+    <p style="margin-left: 40px;">secretKey-is the secret Arduino key that insulates our database from any old person trying to insert into our database" </p></div>
     <br>
 <div class="info">
-<li><h5>connect</h5></li>
-    <p style="margin-left: 40px;"><strong>function connect($db)</strong></p>
-    <p style="margin-left: 40px;">Establishes a connection to the MySQL database server.</p>
+<li><h5>test_isSuccessfulPing</h5></li>
+    <p style="margin-left: 40px;"><strong>def test_isSuccessfulPing()</strong></p>
+    <p style="margin-left: 40px;">This function tests the isSuccessfulPing() function by using three test strings. </p>
     <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">db- database path</p></div>
+    <p style="margin-left: 40px;">none</p></div>
     <br>
 <div class="info">
-<li><h5>executeQuery</h5></li>
-    <p style="margin-left: 40px;"><strong>function executeQuery($sql, $filename)</strong></p>
-    <p style="margin-left: 40px;">Executes a MySQL query</p>
+<li><h5>testAll</h5></li>
+    <p style="margin-left: 40px;"><strong>def testAll()</strong></p>
+    <p style="margin-left: 40px;">This function runs all of the above tests using global variables defined in serverConnect.py. </p>
     <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
-    <p style="margin-left: 40px;">sql- MySQL command</p>
-    <p style="margin-left: 40px;">filename- File name</p></div>
+    <p style="margin-left: 40px;">none</p></div>
     <br>
 </ul>
+
+
 </section>
 </div>
 
