@@ -17,6 +17,11 @@
 
     $debug = false;
     $COMMON = new Common($debug);
+    $hour = 60 * 60;
+    $day = 24 * $hour;
+    $week = 7 * $day;
+    $month = 30 * $day;
+    $year = 12 * $month;
 
     function getAllTimestamps($table) {
         /* This function takes one parameter and returns
@@ -92,4 +97,121 @@
         
     <?php
         }
+
+
+    function collectData() {
+        /* This function handles when a GET /graphs.php request is
+           read by the webserver. It shows some quick summary statistics
+           and then prompts the user to enter a custom date range to 
+           get specific data about a range of dates.
+           Pre-conditions: database already queried and all timestamp data
+                           is available in an array.
+           Post-conditions: an HTML form is displayed, allowing for the
+                            sending of a POST /graphs.php request to me made. */
+
+        echo "<h1>Foot Traffic Statistics</h1>";
+        echo "<h2>Summary</h2>";
+
+        // query database for all students to ever enter the Rec
+        $table = '`ArduinoTest`';
+        $array = getAllTimestamps($table);
+
+        // use global time values (integers)
+        global $hour;
+        global $day;
+        global $week;
+        global $month;
+        global $year;
+
+        // timezones are really annoying, so set some constants
+        $timezoneOffset = 5 * 60 * 60;
+        $now = strtotime("now") - $timezoneOffset;
+        $beginningOfTime = -999999999999;
+
+        // calculate number of students per timeframe
+        $count1 = countEntriesBetweenTimes($array, $now - $hour, $now);
+        $count2 = countEntriesBetweenTimes($array, $now - $day, $now);
+        $count3 = countEntriesBetweenTimes($array, $now - $week, $now);
+        $count4 = countEntriesBetweenTimes($array, $now - $month, $now);
+        $count5 = countEntriesBetweenTimes($array, $now - $year, $now);
+        $count6 = countEntriesBetweenTimes($array, $beginningOfTime, $now);
+
+        // display the above calculated data
+        echo "Number of students in past hour: $count1<br>\n";
+        echo "Number of students in past day: $count2<br>\n";
+        echo "Number of students in past week: $count3<br>\n";
+        echo "Number of students in past month: $count4<br>\n";
+        echo "Number of students in past year: $count5<br>\n";
+        echo "Number of students total: $count6<br>\n";
+
+        echo "<br>\n";
+
+        //Syntax for the constructor: `FusionCharts("type of * chart", "unique chart id", "width of chart", 
+        //"height of chart", "div id to render the chart", "data format", "data source")`
+        $columnChart = new FusionCharts("Column2D", "myFirstChart" , 600, 300, "chart-1", "json",
+            '{
+                "chart": {
+                    "caption": "Monthly revenue for last year",
+                    "subCaption": "Harry\'s SuperMart",
+                    "xAxisName": "Month",
+                    "yAxisName": "Revenues (In USD)",
+                    "numberPrefix": "$",
+                    "theme": "zune"
+                },
+                "data": [
+                        {"label": "Jan", "value": "420000"}, 
+                        {"label": "Feb", "value": "810000"},
+                        {"label": "Mar", "value": "720000"},
+                        {"label": "Apr", "value": "550000"},
+                        {"label": "May", "value": "910000"},
+                        {"label": "Jun", "value": "510000"},
+                        {"label": "Jul", "value": "680000"},
+                        {"label": "Aug", "value": "620000"},
+                        {"label": "Sep", "value": "610000"},
+                        {"label": "Oct", "value": "490000"},
+                        {"label": "Nov", "value": "900000"},
+                        {"label": "Dec", "value": "730000"}
+                    ]
+            }');
+
+        // render the constructed chart as chart-1
+        //$columnChart->render();
+ 
+        ?>
+
+        <!-- chart-1 will render here-->
+        <div id="chart-1"></div>
+
+        <br><br>
+
+        <!-- Allow the use to enter a custom date range -->
+        <form action="graphs.php" method="post">
+                Enter custom date range: <br>
+                From: <input type="date" name="start" value="2018-01-01">  
+                to: <input type="date" name="end" value="<?php echo date('Y-m-d'); ?>"> <br>
+                <input type="submit"> <br>
+        </form>
+    <?php
+    }
+
+    function displayData() {
+        /* This function handles the POST /graphs.php request when
+           seen by the webserver. It handles the submitted date range
+           and calculates relevant statistical data about the range.
+           This page uses JavaScript to display chart information.
+           Pre-conditions: database already queried and all timestamp data
+                           is available in an array.
+           Post-conditions: user is prompted to send GET /graphs.php request. */
+
+        global $hour;
+        global $day;
+        global $week;
+        global $month;
+        global $year;
+
+        echo "Make a new request: ";
+        echo "<form action='graphs.php' method='get'>";
+        echo "<input type='submit' value='New request'>";
+        echo "</form>";
+    }
 ?>
