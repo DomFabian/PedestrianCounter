@@ -10,4 +10,4 @@ Prerequisites for using PedestrianCounter:
 
 Again, the flexible nature of the PHP Object-Oriented DB connection style makes changing databases relatively easy.
 
-API: http://projects.cse.tamu.edu/easter97/
+API: http://projects.cse.tamu.edu/easter97/315
