@@ -41,7 +41,7 @@
 
         $rs = $COMMON->executeQuery($sql, $_SERVER['SCRIPT_NAME']);
 
-        if(empty($rs)) {
+        if (empty($rs)) {
             // if there was no response, return an empty array
             $array = [];
         }
@@ -50,7 +50,7 @@
 
             // loop through results and store each entry in the array
             // each entry in array is an
-            while($row = $rs->fetch(PDO::FETCH_ASSOC)) {
+            while ($row = $rs->fetch(PDO::FETCH_ASSOC)) {
                 array_push($array, strtotime($row['time']));
             }
         }
@@ -69,11 +69,11 @@
         $count = 0;
 
         // if start time is after end time, there are none
-        if($startTime > $endTime) {
+        if ($startTime > $endTime) {
             return $count;
         }
 
-        foreach($array as $time) {
+        foreach ($array as $time) {
             if ($time >= $startTime && $time <= $endTime) {
                 $count++;
             }
@@ -105,7 +105,7 @@
            and then prompts the user to enter a custom date range to 
            get specific data about a range of dates.
            Pre-conditions: database already queried and all timestamp data
-                           is available in an array.
+                           is available in an array. FusionCharts JS files included.
            Post-conditions: an HTML form is displayed, allowing for the
                             sending of a POST /graphs.php request to me made. */
 
@@ -146,37 +146,46 @@
 
         echo "<br>\n";
 
-        //Syntax for the constructor: `FusionCharts("type of * chart", "unique chart id", "width of chart", 
-        //"height of chart", "div id to render the chart", "data format", "data source")`
-        $columnChart = new FusionCharts("Column2D", "myFirstChart" , 600, 300, "chart-1", "json",
-            '{
-                "chart": {
-                    "caption": "Monthly revenue for last year",
-                    "subCaption": "Harry\'s SuperMart",
-                    "xAxisName": "Month",
-                    "yAxisName": "Revenues (In USD)",
-                    "numberPrefix": "$",
-                    "theme": "zune"
-                },
-                "data": [
-                        {"label": "Jan", "value": "420000"}, 
-                        {"label": "Feb", "value": "810000"},
-                        {"label": "Mar", "value": "720000"},
-                        {"label": "Apr", "value": "550000"},
-                        {"label": "May", "value": "910000"},
-                        {"label": "Jun", "value": "510000"},
-                        {"label": "Jul", "value": "680000"},
-                        {"label": "Aug", "value": "620000"},
-                        {"label": "Sep", "value": "610000"},
-                        {"label": "Oct", "value": "490000"},
-                        {"label": "Nov", "value": "900000"},
-                        {"label": "Dec", "value": "730000"}
-                    ]
-            }');
+        // calculate graphical historical data for plot
+        $monthLabels = array("Jan", "Feb", "Mar", "Apr", "May", "June", "Jul",
+                             "Aug", "Sep", "Oct", "Nov", "Dec");
+        $thisYearData = array();
+        $startOfYear = 1514764800 - $timezoneOffset;  // UNIX time for 00:00:00 1 Jan 2018 CST
+        for ($i = 0; $i < 13; $i++) {
+            $count = countEntriesBetweenTimes($array, $startOfYear + $i * $month,
+                                                      $startOfYear + ($i + 1) * $month);
+            array_push($thisYearData, $count);
+        }
 
-        // render the constructed chart as chart-1
-        //$columnChart->render();
- 
+        // format chart header in JSON form
+        $arrData = array(
+            "chart" => array(
+            "caption" => "Monthly Student Traffic 2018",
+            "subCaption" => "TAMU Rec Center",
+            "xAxisName" => "Month",
+            "yAxisName" => "Students",
+            "theme" => "zune"
+            )
+        );
+
+        // format chart data values into JSON form
+        $arrData["data"] = array();
+        for ($i = 0; $i < sizeof($monthLabels); $i++) {
+            array_push($arrData["data"],
+                array(
+                    "label" => $monthLabels[$i],
+                    "value" => $thisYearData[$i]
+                )
+            );
+        }
+
+        // encode the string into a JSON object
+        $jsonData = json_encode($arrData);
+
+        $chart1 = new FusionCharts("column2D", "myChart", 600, 300, "chart-1", "json", $jsonData);
+
+        // render the chart as div tag chart-1
+        $chart1->render();
         ?>
 
         <!-- chart-1 will render here-->
@@ -184,7 +193,7 @@
 
         <br><br>
 
-        <!-- Allow the use to enter a custom date range -->
+        <!-- Allow the user to enter a custom date range -->
         <form action="graphs.php" method="post">
                 Enter custom date range: <br>
                 From: <input type="date" name="start" value="2018-01-01">  
@@ -208,6 +217,18 @@
         global $week;
         global $month;
         global $year;
+
+        $startDate = 0;
+        $endDate = 0;
+        $timeframe = $endDate - $startDate;
+
+        // ensure that date range is valid
+        if ($timeframe < 0) {
+
+        }
+        else {
+
+        }
 
         echo "Make a new request: ";
         echo "<form action='graphs.php' method='get'>";
