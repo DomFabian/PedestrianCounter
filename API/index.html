@@ -102,6 +102,8 @@
         <li><a href="#functions" title="functions">functions.php</a></li>
         <li><a href="#index" title="index">index.php</a></li>
         <li><a href="#testCases" title="testCases">testCases.php</a></li>
+        <li><a href="#graphFunctions" title="graphFunctions">graphFunctions.php</a></li>
+        <li><a href="#graph" title="graph">graph.php</a></li>
     </ul>
 </p>
 <a name="common"></a> 
@@ -342,6 +344,107 @@
     <p style="margin-left: 40px;">This function runs all the above tests.</p>
     <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
     <p style="margin-left: 40px;">none.</p></div>
+</ul>
+<a name="graphFunctions"></a> 
+<div class="page-header"><h3>graphFunctions.php</h3></div>
+<p style="margin-left: 40px;">
+	This file contains the functions used by graphs.php. Each of the functions here have the goal of providing analysis of the entries in the database.</p>
+<h4>Includes:</h4>
+<ul>
+    <li>include('functions.php');</li>
+</ul>
+<h4>Field Summary:</h4>
+<table id="fields" style="width:100%">
+    
+    <tr>
+    <th>Type and Field</th>
+    <th>Description</th> 
+    </tr>
+    <tr>
+        <td>var $debug</td>
+        <td>Manages debug mode</td> 
+    </tr>
+    <tr>
+        <td>var $COMMON</td>
+        <td>Common object with debug value</td> 
+    </tr>
+    <tr>
+        <td>var $hour</td>
+        <td>value of an hour</td> 
+    </tr>
+    <tr>
+        <td>var $day</td>
+        <td>value of a day</td> 
+    </tr>
+    <tr>
+        <td>var $week</td>
+        <td>value of a week</td> 
+    </tr>
+    <tr>
+        <td>var $month</td>
+        <td>value of a month</td> 
+    </tr>
+    <tr>
+        <td>var $year</td>
+        <td>value of a year</td> 
+    </tr>
+</table>
+<h4>Functions:</h4>
+<ul>
+<div class="info">
+<li><h5>getAllTimestamps</h5></li>
+    <p style="margin-left: 40px;"><strong> function getAllTimestamps($table)</strong></p>
+    <p style="margin-left: 40px;">This function takes one parameter and returns an array of all of the entries in the database. In the event of an error, an empty array is returned. Note that the returned array is an array of integers with each of the integers representing the UNIX time of the entry's timestamp.
+        <br>
+           Pre-conditions: connection with database is already established.
+        <br>
+           Post-conditions: a database query to get all of the entries in the table is made. </p>
+    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
+    <p style="margin-left: 40px;">table- a table of database data</p></div>
+    <br>
+<div class="info">
+<li><h5>countEntriesBetweenTimes</h5></li>
+    <p style="margin-left: 40px;"><strong>countEntriesBetweenTimes($array, $startTime, $endTime)</strong></p>
+    <p style="margin-left: 40px;">This function returns the number of times in an array that fall between a start time and an end time. This function requires that all times be in UNIX time.
+        <br>
+           Pre-conditions: the input array has all of the times in UNIX time format as an integer.
+        <br>
+           Post-conditions: none. </p>
+    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
+    <p style="margin-left: 40px;">array- array of data</p>
+    <p style="margin-left: 40px;">startTime- bottom cutoff of time range</p>
+    <p style="margin-left: 40px;">endTime- upper cutoff of time range</p></div>
+    <br>
+<div class="info">
+<li><h5>collectData</h5></li>
+    <p style="margin-left: 40px;"><strong>function collectData()</strong></p>
+    <p style="margin-left: 40px;">This function handles when a GET /graphs.php request is read by the webserver. It shows some quick summary statistics and then prompts the user to enter a custom date range to get specific data about a range of dates.
+        <br>
+           Pre-conditions: database already queried and all timestamp data is available in an array. FusionCharts JS files included.
+        <br>
+           Post-conditions: an HTML form is displayed, allowing for the sending of a POST /graphs.php request to me made.</p>
+    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
+    <p style="margin-left: 40px;">none</p></div>
+    <br>
+<div class="info">
+<li><h5>displayData</h5></li>
+    <p style="margin-left: 40px;"><strong>function displayData()</strong></p>
+    <p style="margin-left: 40px;">This function handles the POST /graphs.php request when seen by the webserver. It handles the submitted date range and calculates relevant statistical data about the range. This page uses JavaScript to display chart information.
+        <br>
+           Pre-conditions: database already queried and all timestamp data is available in an array.
+        <br>
+           Post-conditions: user is prompted to send GET /graphs.php request. </p>
+    <p style="margin-left: 40px;"><strong>Parameters:</strong></p>
+    <p style="margin-left: 40px;">none</p></div>
+</ul>
+<a name="graph"></a> 
+<div class="page-header"><h3>graph.php</h3></div>
+<p style="margin-left: 40px;">
+	This file contains the page that will display charts about the foot traffic seen by the Arduino. It will have constructors for a number of charts and then will render each chart using the Fusion Charts JavaScript module. fusioncharts.php and fusioncharts.js are used under non-commercial license from Fusion Charts Technologies: https://github.com/fusioncharts.</p>
+<h4>Includes:</h4>
+<ul>
+    <li>include('graphFunctions.php');</li>
+     <li>include('fusioncharts/fusioncharts.php');</li>
 </ul>
 
 </section>
