@@ -1,16 +1,12 @@
 <!--
  * File:    index.html
  * Project: CSCE 315 Project 1, Spring 2018
- * Author:  Amanda Easter
  * Date:    03/22/18
- * Section: 504
- * E-mail:  easter97@tamu.edu
  *
 -->
 <title>Team 50 API</title>
 	
 	<meta name="description" content="">
-	<meta name="author" content="Amanda Easter, Dominick Fabian, Ryan Garmeson">
 	
 	<link rel="stylesheet" href="./style.css" >
 
@@ -48,7 +44,7 @@
 			<li><a href="#arduino" title="Arduino">Arduino</a></li>
 			<li><a href="#PHP" title="PHP" class="">PHP</a></li>
 			<li><a href="#python" title="Python" class="">Python</a></li>
-
+            <li><a href="#citations" title="Citations & Sources" class="">Citations & Sources</a></li>
 		</ul>
 		
 	</div>
@@ -61,8 +57,7 @@
 	<hr>
 	<ul>
         <li>created: 01/27/2018</li>
-        <li>latest update: 03/22/2018</li>
-        <li>by: Amanda Easter, Dominick Fabian, Ryan Garmeson</li>
+        <li>latest update: 03/27/2018</li>
 	</ul>
         <h5>The purpose of this project to track usage of the rec center's newly-opened South Entrance. The overall design uses an Arduino interface to measure the traffic, and send data to a web accessible page and database for further research.</h5>
     <p style="margin-left: 40px;"><h3>Equipment:</h3></p>
@@ -113,6 +108,10 @@
 <div class="page-header"><h3>common.php</h3></div>
 <p style="margin-left: 40px;">
 	This file contains the definition for the Common object, with its functions. It is used by any and all PHP files that need to connect to the PHPMyAdmin database for the 315 project 1. It also displays an error message if the page is accessed directly or through another program</p>
+<h4>Includes:</h4>
+<ul>
+    <li>include('graphFunctions.php');</li>
+</ul>
 <h4>Field Summary:</h4>
 <table id="fields" style="width:100%">
     
@@ -142,7 +141,7 @@
     </tr>
     <tr>
         <td>var $pass</td>
-        <td>Contains password that must be matched in order for an Arduino to successfully submit data to the server</td> 
+        <td>Password to login to the database</td> 
     </tr>
 </table>
 <h4>Functions:</h4>
@@ -476,6 +475,14 @@
 </ul>
 
 
+</section>
+<section id="Citations & Sources">
+<a name="citations"></a>
+<div class="page-header"><h3>Citations & Sources</h3><hr class="notop"></div>
+    <ul>
+        <li><strong>graphs.php</strong> fusioncharts.php and fusioncharts.js are used under non-commercial license from Fusion Charts Technologies: <a href="https://github.com/fusioncharts">https://github.com/fusioncharts</a>.</li>
+        <li><strong>style.css</strong> Some elements of stylesheet extended from documenter class copyright Xaver Birsak: <a href="https://revaxarts-themes.com/documenter/docs/">https://revaxarts-themes.com/documenter/docs/</a></li>
+    </ul>
 </section>
 </div>
 
