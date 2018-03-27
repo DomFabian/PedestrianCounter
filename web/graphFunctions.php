@@ -13,7 +13,7 @@
 **
 ***********************************************/
 
-    include('Common.php');
+    include('functions.php');
 
     $debug = false;
     $COMMON = new Common($debug);
@@ -97,7 +97,6 @@
         
     <?php
         }
-
 
     function collectData() {
         /* This function handles when a GET /graphs.php request is
