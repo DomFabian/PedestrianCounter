@@ -79,7 +79,7 @@ def sendWebserverPing(host, path, secretKey):
     s.connect(addr)
 
     # send our crafted packet
-    s.send(bytes(msg, 'utf8'))
+    s.send(bytes(msg))
 
     # sleep for one second while the server is responding
     sleep(1)

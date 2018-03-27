@@ -110,7 +110,7 @@
                             sending of a POST /graphs.php request to me made. */
 
         echo "<h1>Foot Traffic Statistics</h1>";
-        echo "<h2>Summary</h2>";
+        echo "<h2>Summary Statistics</h2>";
 
         // query database for all students to ever enter the Rec
         $table = '`ArduinoTest`';
@@ -163,8 +163,7 @@
             "caption" => "Monthly Student Traffic 2018",
             "subCaption" => "TAMU Rec Center",
             "xAxisName" => "Month",
-            "yAxisName" => "Students",
-            "theme" => "zune"
+            "yAxisName" => "Students"
             )
         );
 
@@ -182,6 +181,7 @@
         // encode the string into a JSON object
         $jsonData = json_encode($arrData);
 
+        // construct a 600px x 300px chart from the data
         $chart1 = new FusionCharts("column2D", "myChart", 600, 300, "chart-1", "json", $jsonData);
 
         // render the chart as div tag chart-1
@@ -194,6 +194,7 @@
         <br><br>
 
         <!-- Allow the user to enter a custom date range -->
+        <h2>Custom Statistics</h2>
         <form action="graphs.php" method="post">
                 Enter custom date range: <br>
                 From: <input type="date" name="start" value="2018-01-01">  
@@ -212,22 +213,33 @@
                            is available in an array.
            Post-conditions: user is prompted to send GET /graphs.php request. */
 
+        // query database for all students to ever enter the Rec
+        $table = '`ArduinoTest`';
+        $array = getAllTimestamps($table);
+        
+        // use global times in seconds (integers)
         global $hour;
         global $day;
         global $week;
         global $month;
         global $year;
 
-        $startDate = 0;
-        $endDate = 0;
+        $start = $_POST["start"];
+        $end = $_POST["end"];
+
+        // convert inputted dates into UNIX time
+        $startDate = strtotime($start);
+        $endDate = strtotime($end);
         $timeframe = $endDate - $startDate;
 
         // ensure that date range is valid
         if ($timeframe < 0) {
-
+            echo "Invalid timeframe entered.\n";
         }
         else {
-
+            $count = countEntriesBetweenTimes($array, $startDate, $endDate);
+            echo "Number of students in this time range is: $count";
+            echo "\n<br><br>\n";
         }
 
         echo "Make a new request: ";

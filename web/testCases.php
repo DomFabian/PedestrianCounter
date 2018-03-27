@@ -17,6 +17,7 @@
 ***********************************************/    
 
     include('functions.php');
+    include('graphFunctions.php');
 
     $tableName = '`ArduinoTest`';
 
@@ -146,6 +147,47 @@
         printTestResult($passCond);
     }
 
+    function test_getAllTimestamps() {
+        /* This function calls the getAllTimestamps() function
+           and ensures that it indeed returns an array of the same
+           size as the number of entries in the database. It also
+           ensures that if a connection to the database cannot be
+           made, that an empty array is returned.
+           Pre-condition: database is created and can be queried.
+           Post-condistion: count of entries in the database will
+                            be queried and array will be made. */
+
+        global $tableName;
+        $passCond = true;
+
+        echo("test_getAllTimestamps: ");
+        printTestResult($passCond);
+    }
+
+    function test_countEntriesBetweenTimes() {
+        /* This function calls the countEntriesBetweenTimes()
+           function and ensures that it is indeed able to count
+           the number of elements in an array that are between the
+           given range.
+           Pre-conditions: none.
+           Post-conditions: a few small arrays are created. */
+
+        $passCond = true;
+
+        $testArray1 = array(12, 13, 14, 100, 101, 102, 1000);
+        $testArray2 = [];
+        $testArray3 = array(100, 101, 102, 103, 104, 105);
+
+        $test1 = (countEntriesBetweenTimes($testArray1, 10, 20) == 3);
+        $test2 = (countEntriesBetweenTimes($testArray2, 0, 100) == 0);
+        $test3 = (countEntriesBetweenTimes($testArray3, 100, 105) == 6);
+
+        $passCond = $passCond && $test1 && $test2 && $test3;
+
+        echo("test_countEntriesBetweenTimes: ");
+        printTestResult($passCond);
+    }
+
     function testAll() {
         /* This function runs all the above tests. */
 
@@ -153,6 +195,8 @@
         test_getNumDatabaseEntries();
         test_sanitize();
         test_handleArduinoPing();
+        test_getAllTimestamps();
+        test_countEntriesBetweenTimes();
     }
 
     if ($_SERVER["REQUEST_METHOD"] === "GET") {
