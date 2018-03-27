@@ -16,7 +16,7 @@
 **
 ***********************************************/    
 
-    include('functions.php');
+    // NOTE: Including graphFunctions in turn includes everything else!
     include('graphFunctions.php');
 
     $tableName = '`ArduinoTest`';
@@ -158,7 +158,13 @@
                             be queried and array will be made. */
 
         global $tableName;
-        $passCond = true;
+        $invalidTableName = "whoop";
+
+        // check to see if the database has then same number of entries in all instances
+        $passCond = sizeof(getAllTimestamps($tableName)) == getNumDatabaseEntries($tableName);
+
+        // check to ensure that an empty array is returned if database does not respond
+        $passCond = $passCond && (sizeof(getAllTimestamps($invalidTableName)) == 0);
 
         echo("test_getAllTimestamps: ");
         printTestResult($passCond);
