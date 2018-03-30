@@ -1,10 +1,8 @@
 '''*****************************************
 ** File:    serverConnect.py
 ** Project: CSCE 315 Project 1, Spring 2018
-** Author:  Dominick Fabian
 ** Date:    03/01/18
 ** Section: 504
-** E-mail:  dominick@tamu.edu
 **
 **   This file contains all of the functions needed to handle
 ** connections between the Arduino and the webserver. The

@@ -2,10 +2,8 @@
 /*****************************************
 ** File:    testCases.php
 ** Project: CSCE 315 Project 1, Spring 2018
-** Author:  Dominick Fabian
 ** Date:    02/21/18
 ** Section: 504
-** E-mail:  dominick@tamu.edu 
 **
 **   This file contains functions that test each of the functions
 ** that will be implemented for the server-side logic. The functions

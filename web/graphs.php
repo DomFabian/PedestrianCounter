@@ -2,10 +2,8 @@
 /*****************************************
 ** File:    graphs.php
 ** Project: CSCE 315 Project 1, Spring 2018
-** Author:  Dominick Fabian
 ** Date:    03/20/18
 ** Section: 504
-** E-mail:  dominick@tamu.edu 
 **
 **   This file contains the page that will display charts
 ** about the foot traffic seen by the Arduino. It will have
