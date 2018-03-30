@@ -1,3 +1,13 @@
+'''*****************************************
+** File:    serverConnect.py
+** Project: CSCE 315 Project 1, Spring 2018
+** Date:    03/31/18
+** Section: 504
+**
+**   This file contains constants used in the rest of the code
+**
+***********************************************'''
+
 # set to ports the sensors are plugged to.
 # SENSOR1 should be the outside-most sensor
 SENSOR1 = 2
