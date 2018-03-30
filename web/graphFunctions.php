@@ -231,13 +231,15 @@
         $endDate = strtotime($end);
         $timeframe = $endDate - $startDate;
 
+        echo "<h1>Statistics for: $start to $end</h1>\n";
+
         // ensure that date range is valid
         if ($timeframe < 0) {
             echo "Invalid timeframe entered.\n";
         }
         else {
             $count = countEntriesBetweenTimes($array, $startDate, $endDate);
-            echo "Number of students in this time range is: $count";
+            echo "Total number of students in this time range is: $count";
             echo "\n<br><br>\n";
         }
 
