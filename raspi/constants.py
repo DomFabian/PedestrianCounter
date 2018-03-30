@@ -11,7 +11,7 @@ SENSOR2 = 4
 # as a valid reading. Does not need to be low unless readings are taken in long 
 # intervals. They are currently set to once per millisecond.
 BASELINE = 200
-RECORDSIZE = 15
+RECORDSIZE = 10
 ERRTOL = .25
 
 # TIMETOL should be set to be tolerant of a person walking average speed.
