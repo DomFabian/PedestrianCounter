@@ -10,14 +10,14 @@ SENSOR2 = 4
 # ERRTOL declares what % of the recent record may be an error and still count
 # as a valid reading. Does not need to be low unless readings are taken in long 
 # intervals. They are currently set to once per millisecond.
-BASELINE = 90
-RECORDSIZE = 7
+BASELINE = 200
+RECORDSIZE = 15
 ERRTOL = .25
 
 # TIMETOL should be set to be tolerant of a person walking average speed.
 # at 10mph, an object takes 34 ms to cross both sensors.
 # at 1mph, an object takes 340 ms to cross both sensors.
-# The average person walks at 3mph.
+# The average person walks at 3mph, and their legs will move faster than that.
 TIMETOL = 50
 
 # SLEEPDELAY should be long enough to not ping the same person twice and short
@@ -25,4 +25,4 @@ TIMETOL = 50
 SLEEPDELAY = 0.5
 
 # PORT is the port the arduino is plugged into.
-PORT = "COM6"
+PORT = "/dev/ttyACM0"
