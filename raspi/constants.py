@@ -18,7 +18,7 @@ ERRTOL = .25
 # at 10mph, an object takes 34 ms to cross both sensors.
 # at 1mph, an object takes 340 ms to cross both sensors.
 # The average person walks at 3mph, and their legs will move faster than that.
-TIMETOL = 50
+TIMETOL = 5
 
 # SLEEPDELAY should be long enough to not ping the same person twice and short
 # enough to catch the person behind them.
