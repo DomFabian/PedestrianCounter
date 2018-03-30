@@ -31,8 +31,8 @@ while 1:
 		#print("inside second if")
 		if pingloop < TIMETOL:
 			#print(str(s2record))
-			#print("I see you!")
-			sendWebserverPing(host, path, secretKey)
+			print("I see you!")
+			sendWebserverPing('projects.cse.tamu.edu', 'domfabian1/index.php', 'ourSecretArduinoKey')
 			s2record = [0 for i in range(RECORDSIZE)]
 			pingloop += TIMETOL + 1
 			time.sleep(SLEEPDELAY)
