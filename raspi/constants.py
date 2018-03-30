@@ -22,7 +22,7 @@ TIMETOL = 5
 
 # SLEEPDELAY should be long enough to not ping the same person twice and short
 # enough to catch the person behind them.
-SLEEPDELAY = 0.5
+SLEEPDELAY = 0.1
 
 # PORT is the port the arduino is plugged into.
 PORT = "/dev/ttyACM0"
